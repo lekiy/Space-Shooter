@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://b2nupqs8rcg0b"]
+
+[ext_resource type="Texture2D" uid="uid://dwrvjqy5a3xa8" path="res://assets/images/simpleSpace_sheet.png" id="1_la2le"]
+[ext_resource type="Script" path="res://scenes/asteroid.gd" id="1_v3s8r"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_f3d4x"]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7s4ui"]
+atlas = ExtResource("1_la2le")
+region = Rect2(144.291, 429.238, 48.4529, 47.3996)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8vjkc"]
+radius = 25.0799
+
+[node name="Asteroid" type="RigidBody2D"]
+collision_layer = 2
+collision_mask = 7
+physics_material_override = SubResource("PhysicsMaterial_f3d4x")
+gravity_scale = 0.0
+script = ExtResource("1_v3s8r")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_7s4ui")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_8vjkc")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]

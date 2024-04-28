@@ -1,0 +1,7 @@
+res://space.tscn
+res://scenes/player.tscn
+res://scenes/bullet.tscn
+res://scenes/asteroid.tscn
+res://scenes/asteroid.gd
+res://scripts/Player.gd
+res://scripts/space.gd

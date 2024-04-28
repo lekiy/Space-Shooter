@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://s8urcuhjqduh"]
+
+[ext_resource type="PackedScene" uid="uid://bwscwa5nffp18" path="res://scenes/player.tscn" id="1_3bpys"]
+[ext_resource type="Script" path="res://scripts/space.gd" id="1_4gm7i"]
+
+[node name="Space" type="Node2D"]
+script = ExtResource("1_4gm7i")
+
+[node name="Player" parent="." instance=ExtResource("1_3bpys")]
+
+[node name="AsteroidSpawnTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[connection signal="timeout" from="AsteroidSpawnTimer" to="." method="_on_asteroid_spawn_timer_timeout"]

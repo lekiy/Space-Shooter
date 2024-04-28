@@ -1,0 +1,18 @@
+ea4bc82a6ad023ab7ee23ee620429895
+::res://::1714248111
+hello world.txt::TextFile::-1::1713463526::0::1::::<><>::
+icon.svg::CompressedTexture2D::1785713560715068573::1713462980::1713991490::1::::<><>::
+player.tscn::PackedScene::1466082341674787959::1714074292::0::1::::<><>::res://scripts/Player.gd<>uid://dwrvjqy5a3xa8::::res://assets/images/simpleSpace_sheet.png
+space.tscn::PackedScene::1332768485993764651::1714247266::0::1::::<><>::uid://bwscwa5nffp18::::res://scenes/player.tscn<>res://scripts/space.gd
+::res://assets/::1713462980
+::res://assets/images/::1713991490
+simpleSpace_sheet.png::CompressedTexture2D::8739803040741369757::1713462980::1713991490::1::::<><>::
+::res://scenes/::1714246699
+asteroid.gd::GDScript::-1::1714245929::0::1::::<>RigidBody2D<>::
+asteroid.tscn::PackedScene::4309598369188910123::1714246699::0::1::::<><>::uid://dwrvjqy5a3xa8::::res://assets/images/simpleSpace_sheet.png<>res://scenes/asteroid.gd
+bullet.tscn::PackedScene::4876253506117136645::1714246699::0::1::::<><>::uid://dwrvjqy5a3xa8::::res://assets/images/simpleSpace_sheet.png<>res://scripts/bullet.gd
+player.tscn::PackedScene::3967894811696019561::1714246699::0::1::::<><>::res://scripts/Player.gd<>uid://dwrvjqy5a3xa8::::res://assets/images/simpleSpace_sheet.png
+::res://scripts/::1714246706
+bullet.gd::GDScript::-1::1714245499::0::1::::<>Node2D<>::
+Player.gd::GDScript::-1::1714246299::0::1::::<>CharacterBody2D<>::
+space.gd::GDScript::-1::1714246706::0::1::::<>Node2D<>::
