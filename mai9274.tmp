@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://cu4t3jf54o8to"]
+
+[ext_resource type="Script" path="res://scripts/PlayerShip.gd" id="1_f2lhi"]
+[ext_resource type="PackedScene" uid="uid://cluudq6bj7mb6" path="res://scenes/asteroid.tscn" id="1_tktkq"]
+[ext_resource type="Texture2D" uid="uid://cauywwhqoqqi0" path="res://assets/images/simpleSpace_sheet.png" id="2_ccp88"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a7hud"]
+atlas = ExtResource("2_ccp88")
+region = Rect2(52, 246, 48, 46)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_d02k8"]
+radius = 18.0
+height = 48.0
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1fn5o"]
+bounce = 1.0
+
+[node name="Main" type="Node2D"]
+
+[node name="Asteroid2" parent="." instance=ExtResource("1_tktkq")]
+position = Vector2(351, 0)
+
+[node name="PlayerShip" type="CharacterBody2D" parent="."]
+position = Vector2(491, 210)
+script = ExtResource("1_f2lhi")
+
+[node name="Sprite2D" type="Sprite2D" parent="PlayerShip"]
+texture = SubResource("AtlasTexture_a7hud")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerShip"]
+shape = SubResource("CapsuleShape2D_d02k8")
+
+[node name="AttackTimer" type="Timer" parent="PlayerShip"]
+
+[node name="Asteroid" parent="." instance=ExtResource("1_tktkq")]
+physics_material_override = SubResource("PhysicsMaterial_1fn5o")
+initial_velocity = Vector2(100, 0)
+
+[connection signal="timeout" from="PlayerShip/AttackTimer" to="PlayerShip" method="_on_attack_timer_timeout"]

@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://yn3i2esv0nmp"]
+
+[ext_resource type="Texture2D" uid="uid://cauywwhqoqqi0" path="res://assets/images/simpleSpace_sheet.png" id="1_82a8j"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_otip3"]
+atlas = ExtResource("1_82a8j")
+region = Rect2(52, 246, 48, 46)
+
+[node name="Life" type="TextureRect"]
+texture = SubResource("AtlasTexture_otip3")

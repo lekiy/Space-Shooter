@@ -1,0 +1,80 @@
+[gd_scene load_steps=10 format=3 uid="uid://cu4t3jf54o8to"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_imjyb"]
+[ext_resource type="Script" path="res://scripts/LivesContainer.gd" id="3_fjwf2"]
+[ext_resource type="Script" path="res://FuelBar.gd" id="3_iw4lg"]
+[ext_resource type="PackedScene" uid="uid://yn3i2esv0nmp" path="res://scenes/life.tscn" id="4_5sly3"]
+[ext_resource type="PackedScene" uid="uid://c4s644xxs7021" path="res://scenes/ammo.tscn" id="5_qib2c"]
+[ext_resource type="Script" path="res://scripts/ScoreLabel.gd" id="6_2r5ca"]
+[ext_resource type="PackedScene" uid="uid://2cf5bvvbo2di" path="res://scenes/satalite_shop.tscn" id="7_wjvrn"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_s8fb0"]
+font_size = 24
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_asqwl"]
+size = Vector2(1740, 1268)
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_imjyb")
+
+[node name="AsteroidSpawnTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="Camera" type="Camera2D" parent="."]
+position = Vector2(576, 324)
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="LivesContainer" type="HBoxContainer" parent="HUD"]
+offset_left = 10.0
+offset_top = 20.0
+offset_right = 10.0
+offset_bottom = 20.0
+script = ExtResource("3_fjwf2")
+image_scene = ExtResource("4_5sly3")
+metadata/_edit_use_anchors_ = true
+
+[node name="FuelBar" type="ProgressBar" parent="HUD"]
+offset_left = 10.0
+offset_top = 82.0
+offset_right = 170.0
+offset_bottom = 102.0
+value = 50.0
+show_percentage = false
+script = ExtResource("3_iw4lg")
+
+[node name="BulletsContainer" type="HBoxContainer" parent="HUD"]
+offset_left = 10.0
+offset_top = 109.0
+offset_right = 10.0
+offset_bottom = 109.0
+scale = Vector2(0.5, 0.5)
+theme_override_constants/separation = -1
+script = ExtResource("3_fjwf2")
+image_scene = ExtResource("5_qib2c")
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="HUD"]
+offset_left = 1102.0
+offset_top = 10.0
+offset_right = 1142.0
+offset_bottom = 33.0
+size_flags_horizontal = 10
+label_settings = SubResource("LabelSettings_s8fb0")
+horizontal_alignment = 2
+vertical_alignment = 1
+script = ExtResource("6_2r5ca")
+
+[node name="GameArea" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameArea"]
+position = Vector2(574, 307)
+shape = SubResource("RectangleShape2D_asqwl")
+
+[node name="SataliteShop" parent="." instance=ExtResource("7_wjvrn")]
+
+[connection signal="lives_changed" from="." to="HUD/LivesContainer" method="_on_value_changed"]
+[connection signal="score_updated" from="." to="HUD/Label" method="_on_score_changed"]
+[connection signal="timeout" from="AsteroidSpawnTimer" to="." method="_on_asteroid_spawn_timer_timeout"]
+[connection signal="body_exited" from="GameArea" to="." method="_on_game_area_body_exited"]

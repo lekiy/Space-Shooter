@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://cd1u1s8k0hkqc"]
+
+[ext_resource type="Script" path="res://scripts/bullet.gd" id="1_0gmkh"]
+[ext_resource type="Texture2D" uid="uid://cauywwhqoqqi0" path="res://assets/images/simpleSpace_sheet.png" id="2_l4lca"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_43eik"]
+atlas = ExtResource("2_l4lca")
+region = Rect2(148, 341, 16, 33)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lnpk4"]
+
+[node name="Bullet" type="Node2D"]
+script = ExtResource("1_0gmkh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_43eik")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CapsuleShape2D_lnpk4")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_body_entered"]

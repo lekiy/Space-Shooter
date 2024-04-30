@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://ds14kp7lve6ui"]
+
+[ext_resource type="Script" path="res://scripts/PlayerShip.gd" id="1_f8e7q"]
+[ext_resource type="Texture2D" uid="uid://cauywwhqoqqi0" path="res://assets/images/simpleSpace_sheet.png" id="2_leq0u"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a7hud"]
+atlas = ExtResource("2_leq0u")
+region = Rect2(52, 246, 48, 46)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_d02k8"]
+radius = 18.0
+height = 48.0
+
+[node name="PlayerShip" type="CharacterBody2D"]
+position = Vector2(491, 210)
+collision_mask = 2
+script = ExtResource("1_f8e7q")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_a7hud")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_d02k8")
+
+[node name="AttackTimer" type="Timer" parent="."]
+
+[connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
