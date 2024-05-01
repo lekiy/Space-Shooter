@@ -1,10 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://cu4t3jf54o8to"]
+[gd_scene load_steps=9 format=3 uid="uid://cu4t3jf54o8to"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_imjyb"]
 [ext_resource type="Script" path="res://scripts/LivesContainer.gd" id="3_fjwf2"]
 [ext_resource type="PackedScene" uid="uid://yn3i2esv0nmp" path="res://scenes/life.tscn" id="4_5sly3"]
 [ext_resource type="FontFile" uid="uid://te2nk0btqskk" path="res://assets/fonts/Kenney Future.ttf" id="4_m3qq3"]
-[ext_resource type="PackedScene" uid="uid://hrenh2i73x60" path="res://scenes/game_over_label.tscn" id="5_onvui"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_s8fb0"]
 font_size = 24
@@ -12,22 +11,21 @@ font_size = 24
 [sub_resource type="GDScript" id="GDScript_irki5"]
 script/source = "extends Label
 
-func _on_score_changed(score):
-	text = \"Score: \" + str(score)
-"
 
-[sub_resource type="LabelSettings" id="LabelSettings_ayhyv"]
-font = ExtResource("4_m3qq3")
-font_size = 32
+func _on_score_changed(score):
+	text = str(score)
+"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_asqwl"]
 size = Vector2(1740, 1268)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l7jaa"]
+size = Vector2(1152, 648)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_imjyb")
 
 [node name="AsteroidSpawnTimer" type="Timer" parent="."]
-wait_time = 2.0
 autostart = true
 
 [node name="Camera" type="Camera2D" parent="."]
@@ -44,7 +42,7 @@ script = ExtResource("3_fjwf2")
 image_scene = ExtResource("4_5sly3")
 metadata/_edit_use_anchors_ = true
 
-[node name="ScoreLabel" type="Label" parent="HUD"]
+[node name="Label" type="Label" parent="HUD"]
 offset_left = 10.0
 offset_top = 10.0
 offset_right = 81.0
@@ -57,31 +55,6 @@ horizontal_alignment = 2
 vertical_alignment = 1
 script = SubResource("GDScript_irki5")
 
-[node name="GameOverLabel" parent="HUD" instance=ExtResource("5_onvui")]
-visible = false
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="GameStartLabel" parent="HUD" instance=ExtResource("5_onvui")]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "- Press Space to Start -"
-label_settings = SubResource("LabelSettings_ayhyv")
-
-[node name="Timer" type="Timer" parent="HUD/GameStartLabel"]
-wait_time = 0.8
-autostart = true
-
 [node name="GameArea" type="Area2D" parent="."]
 visible = false
 
@@ -89,8 +62,14 @@ visible = false
 position = Vector2(574, 307)
 shape = SubResource("RectangleShape2D_asqwl")
 
+[node name="ViewArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ViewArea"]
+position = Vector2(576, 324)
+shape = SubResource("RectangleShape2D_l7jaa")
+
 [connection signal="lives_changed" from="." to="HUD/LivesContainer" method="_on_value_changed"]
-[connection signal="score_updated" from="." to="HUD/ScoreLabel" method="_on_score_changed"]
+[connection signal="score_updated" from="." to="HUD/Label" method="_on_score_changed"]
 [connection signal="timeout" from="AsteroidSpawnTimer" to="." method="_on_asteroid_spawn_timer_timeout"]
-[connection signal="timeout" from="HUD/GameStartLabel/Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_exited" from="GameArea" to="." method="_on_game_area_body_exited"]
+[connection signal="body_exited" from="ViewArea" to="." method="_on_view_area_body_exited"]

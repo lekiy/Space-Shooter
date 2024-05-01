@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://hrenh2i73x60"]
+
+[ext_resource type="FontFile" uid="uid://te2nk0btqskk" path="res://assets/fonts/Kenney Future.ttf" id="1_c801s"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ayhyv"]
+font = ExtResource("1_c801s")
+font_size = 32
+
+[node name="Game Over Label" type="Label"]
+offset_left = -131.0
+offset_top = -37.5
+offset_right = 131.0
+offset_bottom = 37.5
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_c801s")
+text = "Game Over
+Final Score
+"
+label_settings = SubResource("LabelSettings_ayhyv")
+horizontal_alignment = 1
+vertical_alignment = 1
