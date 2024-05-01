@@ -28,5 +28,4 @@ texture = SubResource("AtlasTexture_35lcx")
 shape = SubResource("CircleShape2D_luxiq")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="tree_exited" from="." to="." method="_on_tree_exited"]
 [connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]

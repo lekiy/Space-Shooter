@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://ds14kp7lve6ui"]
+[gd_scene load_steps=6 format=3 uid="uid://ds14kp7lve6ui"]
 
 [ext_resource type="Script" path="res://scripts/PlayerShip.gd" id="1_f8e7q"]
 [ext_resource type="Texture2D" uid="uid://cauywwhqoqqi0" path="res://assets/images/simpleSpace_sheet.png" id="2_leq0u"]
+[ext_resource type="AudioStream" uid="uid://bp8ar6ff6ehcn" path="res://assets/sounds/laserRetro_000.ogg" id="3_su7p5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a7hud"]
 atlas = ExtResource("2_leq0u")
@@ -28,6 +29,9 @@ shape = SubResource("CapsuleShape2D_d02k8")
 wait_time = 2.0
 one_shot = true
 autostart = true
+
+[node name="LaserSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_su7p5")
 
 [connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

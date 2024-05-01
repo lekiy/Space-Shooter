@@ -66,6 +66,7 @@ func handle_attack(_delta):
 		can_fire = false
 		$AttackTimer.wait_time = fire_rate
 		$AttackTimer.start()
+		$LaserSound.play()
 
 func _on_attack_timer_timeout():
 	can_fire = true
