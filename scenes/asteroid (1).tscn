@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://b2nupqs8rcg0b"]
 
-[ext_resource type="Script" path="res://scripts/asteroid.gd" id="1_4mv8y"]
 [ext_resource type="Texture2D" uid="uid://dwrvjqy5a3xa8" path="res://assets/images/simpleSpace_sheet.png" id="1_la2le"]
+[ext_resource type="Script" path="res://scripts/asteroid.gd" id="1_v3s8r"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_f3d4x"]
 friction = 0.0
@@ -19,7 +19,7 @@ collision_layer = 2
 collision_mask = 7
 physics_material_override = SubResource("PhysicsMaterial_f3d4x")
 gravity_scale = 0.0
-script = ExtResource("1_4mv8y")
+script = ExtResource("1_v3s8r")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = SubResource("AtlasTexture_7s4ui")

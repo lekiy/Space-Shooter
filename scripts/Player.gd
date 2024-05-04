@@ -9,7 +9,7 @@ extends CharacterBody2D
 @export var SPEED = 300.0
 var _velocity:Vector2
 @export var rotation_speed = 5
-@export var fire_rate = .02
+@export var fire_rate = .2
 var can_fire = true
 
 func _physics_process(delta):

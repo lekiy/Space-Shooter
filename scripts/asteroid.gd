@@ -26,9 +26,9 @@ func _on_tree_exiting():
 	if size > 1:
 		for i in 2:
 			var asteroid = asteroid_scene.instantiate()
-			#asteroid.global_position = center_position + Vector2.UP.rotated(deg_to_rad(randf_range(0,360))) * 800
-			asteroid.global_position = global_position 
+			asteroid.global_position = global_position + Vector2.UP.rotated(deg_to_rad(randf_range(0,360))) * 20 * size
+			#asteroid.global_position = global_position 
 			#asteroid.initial_velocity = Vector2.RIGHT.rotated(angle) * 100
-			asteroid.initial_velocity = linear_velocity
+			asteroid.initial_velocity = linear_velocity + Vector2.RIGHT.rotated(deg_to_rad(randf_range(0,360))) * randf_range(1,150)
 			asteroid.size = size - 1
 			get_parent().add_child.call_deferred(asteroid)

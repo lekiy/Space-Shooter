@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://s8urcuhjqduh"]
+
+[ext_resource type="Script" path="res://scripts/space.gd" id="1_t8q4w"]
+[ext_resource type="Script" path="res://scripts/LivesContainer.gd" id="2_ch8wo"]
+
+[node name="Space" type="Node2D"]
+script = ExtResource("1_t8q4w")
+
+[node name="AsteroidSpawnTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="LivesContainer" type="HBoxContainer" parent="CanvasLayer"]
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 170.0
+offset_bottom = 70.0
+script = ExtResource("2_ch8wo")
+
+[connection signal="timeout" from="AsteroidSpawnTimer" to="." method="_on_asteroid_spawn_timer_timeout"]
