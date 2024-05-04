@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://yn3i2esv0nmp" path="res://scenes/life.tscn" id="4_5sly3"]
 [ext_resource type="FontFile" uid="uid://te2nk0btqskk" path="res://assets/fonts/Kenney Future.ttf" id="4_m3qq3"]
 [ext_resource type="PackedScene" uid="uid://hrenh2i73x60" path="res://scenes/game_over_label.tscn" id="5_onvui"]
-[ext_resource type="AudioStream" uid="uid://ptstnpd6pjso" path="res://assets/sounds/explosionCrunch_000.ogg" id="6_c7cg4"]
+[ext_resource type="AudioStream" uid="uid://dy8o0g0hyeld5" path="res://assets/sounds/forceField_000.ogg" id="6_itewl"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_s8fb0"]
 font_size = 24
@@ -90,8 +90,8 @@ visible = false
 position = Vector2(574, 307)
 shape = SubResource("RectangleShape2D_asqwl")
 
-[node name="ExplosionSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("6_c7cg4")
+[node name="GameOverSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_itewl")
 
 [connection signal="lives_changed" from="." to="HUD/LivesContainer" method="_on_value_changed"]
 [connection signal="score_updated" from="." to="HUD/ScoreLabel" method="_on_score_changed"]

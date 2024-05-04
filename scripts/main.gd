@@ -57,7 +57,7 @@ func on_player_death():
 			"+str(score)+"
 			press R to restart"
 		game_over_label.visible = true
-		
+		$GameOverSound.play()
 
 func add_score(_score):
 	score += _score
